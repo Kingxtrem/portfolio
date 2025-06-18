@@ -9,7 +9,7 @@ export default function Projects() {
 
   useEffect(() => {
     axios
-      .get('http://localhost:5000/api/projects')
+      .get('https://portfolio-kappa-three-34.vercel.app/api/projects')
       .then(res => {
         setProjects(res.data);
         setLoading(false);

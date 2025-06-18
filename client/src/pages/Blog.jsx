@@ -9,7 +9,7 @@ export default function Blog() {
 
   useEffect(() => {
     axios
-      .get('http://localhost:5000/api/posts')
+      .get('https://portfolio-kappa-three-34.vercel.app/api/posts')
       .then(res => {
         setPosts(res.data);
         setLoading(false);

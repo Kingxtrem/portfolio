@@ -19,7 +19,7 @@ export default function ProjectManager() {
   useEffect(() => {
     setLoading(true);
     axios
-      .get('http://localhost:5000/api/projects')
+      .get('https://portfolio-kappa-three-34.vercel.app/api/projects')
       .then(res => setProjects(res.data))
       .catch(() => setError('Failed to load projects'))
       .finally(() => setLoading(false));
@@ -40,14 +40,14 @@ export default function ProjectManager() {
     try {
       if (editingProject) {
         const res = await axios.put(
-          `http://localhost:5000/api/projects/${editingProject._id}`,
+          `https://portfolio-kappa-three-34.vercel.app/api/projects/${editingProject._id}`,
           payload,
           { headers: { Authorization: `Bearer ${token}` } }
         );
         setProjects(projects.map(p => (p._id === editingProject._id ? res.data : p)));
         setEditingProject(null);
       } else {
-        const res = await axios.post('http://localhost:5000/api/projects', payload, {
+        const res = await axios.post('https://portfolio-kappa-three-34.vercel.app/api/projects', payload, {
           headers: { Authorization: `Bearer ${token}` },
         });
         setProjects([res.data, ...projects]);
@@ -82,7 +82,7 @@ export default function ProjectManager() {
     setLoading(true);
     setError('');
     try {
-      await axios.delete(`http://localhost:5000/api/projects/${id}`, {
+      await axios.delete(`https://portfolio-kappa-three-34.vercel.app/api/projects/${id}`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       setProjects(projects.filter((p) => p._id !== id));

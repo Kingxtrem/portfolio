@@ -14,7 +14,7 @@ export default function BlogManager() {
   useEffect(() => {
     setLoading(true);
     axios
-      .get('http://localhost:5000/api/posts')
+      .get('https://portfolio-kappa-three-34.vercel.app/api/posts')
       .then(res => setPosts(res.data))
       .catch(() => setError('Failed to load posts'))
       .finally(() => setLoading(false));
@@ -42,7 +42,7 @@ export default function BlogManager() {
     setError('');
     try {
       const res = await axios.put(
-        `http://localhost:5000/api/posts/${editingPost._id}`,
+        `https://portfolio-kappa-three-34.vercel.app/api/posts/${editingPost._id}`,
         data,
         { headers: { Authorization: `Bearer ${token}` } }
       );
@@ -61,7 +61,7 @@ export default function BlogManager() {
     setLoading(true);
     setError('');
     try {
-      await axios.delete(`http://localhost:5000/api/posts/${id}`, {
+      await axios.delete(`https://portfolio-kappa-three-34.vercel.app/api/posts/${id}`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       setPosts(posts.filter(p => p._id !== id));
