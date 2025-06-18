@@ -25,7 +25,7 @@ export default function BlogManager() {
     setLoading(true);
     setError('');
     try {
-      const res = await axios.post('http://localhost:5000/api/posts', data, {
+      const res = await axios.post('https://portfolio-kappa-three-34.vercel.app/api/posts', data, {
         headers: { Authorization: `Bearer ${token}` },
       });
       setPosts([res.data, ...posts]);
