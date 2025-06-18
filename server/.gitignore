@@ -1,30 +1,68 @@
-# Logs
-logs
-*.log
+# Node.js
+node_modules/
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
-pnpm-debug.log*
-lerna-debug.log*
+package-lock.json
+yarn.lock
+.pnpm-debug.log*
 
-node_modules
-dist
-dist-ssr
-*.local
+# dotenv environment variables file
+.env
+.env.*
+
+# Logs
+logs
+*.log
+logs/
+*.pid
+*.seed
+*.pid.lock
+
+# OS
+.DS_Store
+Thumbs.db
 
 # Editor directories and files
-.vscode/*
-!.vscode/extensions.json
-.idea
-.DS_Store
-*.suo
-*.ntvs*
-*.njsproj
-*.sln
-*.sw?
-*.env.*
-.env
-.env.local
-.env.development.local
-.env.test.local
-.env.production.local
+.vscode/
+.idea/
+*.sublime-workspace
+*.sublime-project
+
+# Build output
+dist/
+build/
+tmp/
+temp/
+
+# Coverage directory used by tools like istanbul
+coverage/
+
+# Optional npm cache directory
+.npm/
+
+# Optional eslint cache
+.eslintcache
+
+# Optional REPL history
+.node_repl_history
+
+# TypeScript cache
+*.tsbuildinfo
+
+# PM2 logs
+pids
+*.pm2.log
+
+# Next.js build output
+.next/
+
+# SvelteKit build output
+.svelte-kit/
+
+# Nuxt.js build output
+.nuxt/
+
+# Gatsby files
+.cache/
+public/
