@@ -1,23 +1,25 @@
 import { useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
-import axios from 'axios';
-import { Helmet } from 'react-helmet-async';
+import Axios from '../components/Axios';
+import { Helmet } from 'react-helmet';
 
 export default function BlogDetail() {
   const { id } = useParams();
   const [post, setPost] = useState(null);
   const [loading, setLoading] = useState(true);
 
+  const fetchData = async () => {
+    try {
+      const res = await Axios.get(`/api/posts/${id}`)
+      setPost(res.data);
+    } catch (error) {
+      console.log(error)
+    } finally {
+      setLoading(false)
+    }
+  }
   useEffect(() => {
-    axios
-      .get(`https://portfolio-kappa-three-34.vercel.app/api/posts/${id}`)
-      .then(res => {
-        setPost(res.data);
-        setLoading(false);
-      })
-      .catch(err => {
-        setLoading(false);
-      });
+    fetchData()
   }, [id]);
 
   if (loading)

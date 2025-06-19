@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import axios from 'axios';
 import { useAuth } from '../../context/AuthContext';
+import Axios from '../../components/Axios';
 
 export default function Login() {
   const [username, setUsername] = useState('');
@@ -16,7 +16,7 @@ export default function Login() {
     setSubmitting(true);
     setError('');
     try {
-      const res = await axios.post('https://portfolio-kappa-three-34.vercel.app/api/auth/login', { username, password });
+      const res = await Axios.post('/api/auth/login', { username, password });
       login(res.data.token);
       navigate('/admin');
     } catch (err) {

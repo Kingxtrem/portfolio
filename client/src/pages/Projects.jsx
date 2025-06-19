@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import axios from 'axios';
+import Axios from '../components/Axios';
 import ProjectCard from '../components/ProjectCard';
 
 export default function Projects() {
@@ -8,8 +8,8 @@ export default function Projects() {
   const [error, setError] = useState('');
 
   useEffect(() => {
-    axios
-      .get('https://portfolio-kappa-three-34.vercel.app/api/projects')
+    Axios
+      .get('/api/projects')
       .then(res => {
         setProjects(res.data);
         setLoading(false);

@@ -1,10 +1,10 @@
 import { useEffect, useState } from 'react';
-import axios from 'axios';
+import Axios from '../../components/Axios';
 import { useAuth } from '../../context/AuthContext';
-import TipTapEditor from '../../components/TipTapEditor';
 
 export default function BlogManager() {
   const [posts, setPosts] = useState([]);
+  const [form, setForm] = useState({ title: '', content: '', author: 'Admin', featuredImage: "" });
   const [editingPost, setEditingPost] = useState(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
@@ -13,55 +13,61 @@ export default function BlogManager() {
   // Fetch posts
   useEffect(() => {
     setLoading(true);
-    axios
-      .get('https://portfolio-kappa-three-34.vercel.app/api/posts')
+    Axios
+      .get('/api/posts')
       .then(res => setPosts(res.data))
       .catch(() => setError('Failed to load posts'))
       .finally(() => setLoading(false));
   }, []);
 
-  // Create post
-  const createPost = async data => {
+  // Handle form input
+  const handleInput = (e) => {
+    setForm({ ...form, [e.target.name]: e.target.value });
+  };
+
+  // Create or update post
+  const handleSubmit = async (e) => {
+    e.preventDefault();
     setLoading(true);
     setError('');
     try {
-      const res = await axios.post('https://portfolio-kappa-three-34.vercel.app/api/posts', data, {
-        headers: { Authorization: `Bearer ${token}` },
-      });
-      setPosts([res.data, ...posts]);
+      if (editingPost) {
+        const res = await Axios.put(
+          `/api/posts/${editingPost._id}`,
+          form,
+          { headers: { Authorization: `Bearer ${token}` } }
+        );
+        setPosts(posts.map(p => (p._id === editingPost._id ? res.data : p)));
+        setEditingPost(null);
+      } else {
+        const res = await Axios.post(
+          '/api/posts',
+          form,
+          { headers: { Authorization: `Bearer ${token}` } }
+        );
+        setPosts([res.data, ...posts]);
+      }
+      setForm({ title: '', content: '', author: 'Admin', featuredImage: "" });
     } catch (err) {
-      setError('Failed to create post');
+      setError('Failed to save post');
     } finally {
       setLoading(false);
     }
   };
 
-  // Update post
-  const updatePost = async data => {
-    setLoading(true);
-    setError('');
-    try {
-      const res = await axios.put(
-        `https://portfolio-kappa-three-34.vercel.app/api/posts/${editingPost._id}`,
-        data,
-        { headers: { Authorization: `Bearer ${token}` } }
-      );
-      setPosts(posts.map(p => (p._id === editingPost._id ? res.data : p)));
-      setEditingPost(null);
-    } catch (err) {
-      setError('Failed to update post');
-    } finally {
-      setLoading(false);
-    }
+  // Edit post
+  const handleEdit = (post) => {
+    setEditingPost(post);
+    setForm({ title: post.title, content: post.content, author: post.author,featuredImage:post.featuredImage });
   };
 
   // Delete post
-  const deletePost = async id => {
+  const handleDelete = async (id) => {
     if (!window.confirm('Are you sure you want to delete this post?')) return;
     setLoading(true);
     setError('');
     try {
-      await axios.delete(`https://portfolio-kappa-three-34.vercel.app/api/posts/${id}`, {
+      await Axios.delete(`/api/posts/${id}`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       setPosts(posts.filter(p => p._id !== id));
@@ -81,17 +87,65 @@ export default function BlogManager() {
         <div className="mb-4 p-2 bg-red-100 text-red-700 rounded">{error}</div>
       )}
 
-      <TipTapEditor
-        onSubmit={editingPost ? updatePost : createPost}
-        defaultPost={editingPost || {}}
-        isEditing={!!editingPost}
-      />
+      {/* Add/Edit Blog Form */}
+      <form onSubmit={handleSubmit} className="space-y-3 mb-8 bg-white p-4 rounded shadow">
+        <input
+          name="title"
+          value={form.title}
+          onChange={handleInput}
+          placeholder="Title"
+          className="w-full border p-2 rounded"
+          required
+        />
+        <input
+          name="author"
+          value={form.author}
+          onChange={handleInput}
+          placeholder="Author"
+          className="w-full border p-2 rounded"
+          required
+        />
+        <input type="text"
+          name="featuredImage"
+          onChange={handleInput}
+          value={form.featuredImage}
+          placeholder="Image URL"
+          className="w-full border p-2 rounded" />
+        <textarea
+          name="content"
+          value={form.content}
+          onChange={handleInput}
+          placeholder="Content"
+          className="w-full border p-2 rounded"
+          rows={5}
+          required
+        />
+        <button
+          type="submit"
+          className="bg-blue-600 text-white px-4 py-2 rounded w-full font-semibold hover:bg-blue-700 transition"
+          disabled={loading}
+        >
+          {editingPost ? 'Update Post' : 'Add Post'}
+        </button>
+        {editingPost && (
+          <button
+            type="button"
+            className="w-full mt-2 text-gray-500 underline"
+            onClick={() => {
+              setEditingPost(null);
+              setForm({ title: '', content: '', author: 'Admin',featuredImage:"" });
+            }}
+          >
+            Cancel Edit
+          </button>
+        )}
+      </form>
 
       {loading && (
         <div className="text-center text-gray-500 my-4">Loading...</div>
       )}
 
-      <div className="mt-8 space-y-3">
+      <div className="space-y-3">
         {posts
           .slice()
           .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
@@ -108,14 +162,14 @@ export default function BlogManager() {
               </div>
               <div className="flex gap-2">
                 <button
-                  onClick={() => setEditingPost(post)}
+                  onClick={() => handleEdit(post)}
                   className="text-blue-600 hover:underline focus-visible:underline text-sm transition"
                   disabled={loading}
                 >
                   Edit
                 </button>
                 <button
-                  onClick={() => deletePost(post._id)}
+                  onClick={() => handleDelete(post._id)}
                   className="text-red-600 hover:underline focus-visible:underline text-sm transition"
                   disabled={loading}
                 >

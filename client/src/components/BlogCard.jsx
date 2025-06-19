@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 
 export default function BlogCard({ post }) {
+ 
   return (
     <article
       tabIndex={0}

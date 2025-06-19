@@ -43,7 +43,7 @@ export default function Navbar() {
       </nav>
       {/* Mobile menu */}
       {menuOpen && (
-        <div className="sm:hidden bg-gray-900 px-4 pb-3 space-y-2">
+        <div className="sm:hidden bg-gray-900 text-white px-4 pb-3 space-y-2">
           <Link to="/" className="block hover:text-blue-300" onClick={() => setMenuOpen(false)}>Home</Link>
           <Link to="/projects" className="block hover:text-blue-300" onClick={() => setMenuOpen(false)}>Projects</Link>
           <Link to="/blog" className="block hover:text-blue-300" onClick={() => setMenuOpen(false)}>Blog</Link>

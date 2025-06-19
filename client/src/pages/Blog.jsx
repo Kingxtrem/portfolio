@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import axios from 'axios';
+import Axios from '../components/Axios';
 import BlogCard from '../components/BlogCard';
 
 export default function Blog() {
@@ -8,8 +8,8 @@ export default function Blog() {
   const [error, setError] = useState('');
 
   useEffect(() => {
-    axios
-      .get('https://portfolio-kappa-three-34.vercel.app/api/posts')
+    Axios
+      .get('/api/posts')
       .then(res => {
         setPosts(res.data);
         setLoading(false);

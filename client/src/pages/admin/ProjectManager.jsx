@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import axios from 'axios';
+import Axios from '../../components/Axios';
 import { useAuth } from '../../context/AuthContext';
 
 export default function ProjectManager() {
@@ -18,8 +18,8 @@ export default function ProjectManager() {
 
   useEffect(() => {
     setLoading(true);
-    axios
-      .get('https://portfolio-kappa-three-34.vercel.app/api/projects')
+    Axios
+      .get('/api/projects')
       .then(res => setProjects(res.data))
       .catch(() => setError('Failed to load projects'))
       .finally(() => setLoading(false));
@@ -39,15 +39,15 @@ export default function ProjectManager() {
     };
     try {
       if (editingProject) {
-        const res = await axios.put(
-          `https://portfolio-kappa-three-34.vercel.app/api/projects/${editingProject._id}`,
+        const res = await Axios.put(
+          `/api/projects/${editingProject._id}`,
           payload,
           { headers: { Authorization: `Bearer ${token}` } }
         );
         setProjects(projects.map(p => (p._id === editingProject._id ? res.data : p)));
         setEditingProject(null);
       } else {
-        const res = await axios.post('https://portfolio-kappa-three-34.vercel.app/api/projects', payload, {
+        const res = await Axios.post('/api/projects', payload, {
           headers: { Authorization: `Bearer ${token}` },
         });
         setProjects([res.data, ...projects]);
@@ -82,7 +82,7 @@ export default function ProjectManager() {
     setLoading(true);
     setError('');
     try {
-      await axios.delete(`https://portfolio-kappa-three-34.vercel.app/api/projects/${id}`, {
+      await Axios.delete(`/api/projects/${id}`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       setProjects(projects.filter((p) => p._id !== id));
