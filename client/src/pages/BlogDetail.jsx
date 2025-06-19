@@ -1,7 +1,6 @@
 import { useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import Axios from '../components/Axios';
-import { Helmet } from 'react-helmet';
 
 export default function BlogDetail() {
   const { id } = useParams();
@@ -37,17 +36,7 @@ export default function BlogDetail() {
 
   return (
     <article className="p-4 max-w-2xl mx-auto">
-      <Helmet>
-        <title>{post.title} | Blog</title>
-        <meta name="description" content={post.content.slice(0, 150)} />
-        <meta property="og:title" content={post.title} />
-        <meta property="og:description" content={post.content.slice(0, 150)} />
-        {post.featuredImage && (
-          <meta property="og:image" content={post.featuredImage} />
-        )}
-        <meta property="og:url" content={`https://yourdomain.com/blog/${post._id}`} />
-        <meta name="twitter:card" content="summary_large_image" />
-      </Helmet>
+     
       <h1 className="text-3xl font-bold mb-2">{post.title}</h1>
       <p className="text-gray-500 text-sm mb-4">
         By {post.author} • {new Date(post.createdAt).toLocaleDateString()}
