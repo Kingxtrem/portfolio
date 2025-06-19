@@ -9,6 +9,8 @@ import AdminDashboard from './pages/admin/AdminDashboard';
 import BlogManager from './pages/admin/BlogManager';
 import ProjectManager from './pages/admin/ProjectManager';
 import { useAuth } from './context/AuthContext';
+import Contact from './pages/Contact';
+import ProjectDetails from './pages/ProjectDetails';
 
 // PrivateRoute moved outside App for best practice
 function PrivateRoute({ children }) {
@@ -24,6 +26,8 @@ export default function App() {
         <Route path="/projects" element={<Projects />} />
         <Route path="/blog" element={<Blog />} />
         <Route path="/blog/:id" element={<BlogDetail />} />
+        <Route path="/projects/:id" element={<ProjectDetails />} />
+        <Route path="/contact" element={<Contact />} />
         <Route path="/admin/login" element={<Login />} />
         <Route path="/admin" element={<PrivateRoute><AdminDashboard /></PrivateRoute>} />
         <Route path="/admin/blog" element={<PrivateRoute><BlogManager /></PrivateRoute>} />

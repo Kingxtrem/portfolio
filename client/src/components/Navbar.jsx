@@ -38,6 +38,7 @@ export default function Navbar() {
           <Link to="/" className="hover:text-blue-300 focus-visible:underline">Home</Link>
           <Link to="/projects" className="hover:text-blue-300 focus-visible:underline">Projects</Link>
           <Link to="/blog" className="hover:text-blue-300 focus-visible:underline">Blog</Link>
+          <Link to="/contact" className="hover:text-blue-300 focus-visible:underline">Contact</Link>
           <Link to="/admin" className="hover:text-blue-300 focus-visible:underline">Admin</Link>
         </div>
       </nav>
@@ -47,6 +48,7 @@ export default function Navbar() {
           <Link to="/" className="block hover:text-blue-300" onClick={() => setMenuOpen(false)}>Home</Link>
           <Link to="/projects" className="block hover:text-blue-300" onClick={() => setMenuOpen(false)}>Projects</Link>
           <Link to="/blog" className="block hover:text-blue-300" onClick={() => setMenuOpen(false)}>Blog</Link>
+          <Link to="/contact" className="block hover:text-blue-300" onClick={() => setMenuOpen(false)}>Contact</Link>
           <Link to="/admin" className="block hover:text-blue-300" onClick={() => setMenuOpen(false)}>Admin</Link>
         </div>
       )}

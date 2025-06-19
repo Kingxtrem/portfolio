@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 export default function ProjectCard({ project }) {
   return (
     <article className="bg-white rounded-lg shadow hover:shadow-lg transition-shadow p-4 md:p-6 mb-4 flex flex-col h-full">
@@ -33,6 +35,13 @@ export default function ProjectCard({ project }) {
             Code &rarr;
           </a>
         )}
+        <Link
+        to={`/projects/${project._id}`}
+        className="mt-auto text-blue-600 hover:text-blue-800 font-medium transition-colors focus:underline"
+        aria-label={`Read more about ${project.title}`}
+      >
+        Read More &rarr;
+      </Link>
       </div>
     </article>
   );
