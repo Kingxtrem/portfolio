@@ -58,7 +58,7 @@ export default function BlogManager() {
   // Edit post
   const handleEdit = (post) => {
     setEditingPost(post);
-    setForm({ title: post.title, content: post.content, author: post.author,featuredImage:post.featuredImage });
+    setForm({ title: post.title, content: post.content, author: post.author, featuredImage: post.featuredImage });
   };
 
   // Delete post
@@ -81,6 +81,11 @@ export default function BlogManager() {
 
   return (
     <div className="p-4 sm:p-8 max-w-3xl mx-auto">
+      <meta charSet="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <meta name="Blog_Manager" content="My personal portfolio and blog built with React and Vite." />
+      <meta name="theme-color" content="#2563eb" />
+      <title>Blog_Manager</title>
       <h1 className="text-2xl font-bold mb-6">Manage Blog Posts</h1>
 
       {error && (
@@ -133,7 +138,7 @@ export default function BlogManager() {
             className="w-full mt-2 text-gray-500 underline"
             onClick={() => {
               setEditingPost(null);
-              setForm({ title: '', content: '', author: 'Admin',featuredImage:"" });
+              setForm({ title: '', content: '', author: 'Admin', featuredImage: "" });
             }}
           >
             Cancel Edit

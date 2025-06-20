@@ -21,6 +21,11 @@ export default function ProjectDetails() {
 
   return (
     <div className="p-4 max-w-3xl mx-auto">
+       <meta charSet="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <meta name="Project_Details" content="My personal portfolio and blog built with React and Vite." />
+      <meta name="theme-color" content="#2563eb" />
+      <title>Project_Details</title>
       <h1 className="text-3xl font-bold mb-2">{project.title}</h1>
       <p className="text-gray-500 mb-4">{new Date(project.createdAt).toLocaleDateString()}</p>
       <p className="mb-4">{project.description}</p>

@@ -3,6 +3,11 @@ import React from 'react';
 const Contact = () => {
   return (
     <main className="max-w-xl mx-auto p-4 sm:p-8">
+       <meta charSet="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <meta name="Contacts" content="My personal portfolio and blog built with React and Vite." />
+      <meta name="theme-color" content="#2563eb" />
+      <title>Contacts</title>
       <h1 className="text-3xl font-bold mb-4 text-gray-900">Contact</h1>
       <p className="mb-6 text-gray-700">
         Feel free to reach out for collaborations, project inquiries, or just to say hello!

@@ -6,6 +6,11 @@ export default function AdminDashboard() {
 
   return (
     <main className="p-4 max-w-xl mx-auto">
+       <meta charSet="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <meta name="Admin_Dashboard" content="My personal portfolio and blog built with React and Vite." />
+      <meta name="theme-color" content="#2563eb" />
+      <title>Admin_Dashboard</title>
       <h1 className="text-3xl font-bold mb-6 text-gray-900">Admin Dashboard</h1>
       <nav aria-label="Admin navigation" className="flex flex-col sm:flex-row gap-3 sm:gap-6 mb-6">
         <Link

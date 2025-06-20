@@ -28,6 +28,11 @@ export default function Login() {
 
   return (
     <div className="max-w-md mx-auto p-4 sm:p-6 bg-white rounded shadow-lg mt-12">
+       <meta charSet="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <meta name="Login" content="My personal portfolio and blog built with React and Vite." />
+      <meta name="theme-color" content="#2563eb" />
+      <title>Login</title>
       <h1 className="text-2xl font-bold mb-4 text-center">Admin Login</h1>
       {error && (
         <p className="text-red-600 mb-3 text-center" aria-live="polite">

@@ -29,6 +29,11 @@ export default function Blog() {
 
   return (
     <div className="p-4 max-w-4xl mx-auto">
+      <meta charSet="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <meta name="Blogs" content="My personal portfolio and blog built with React and Vite." />
+      <meta name="theme-color" content="#2563eb" />
+      <title>Blogs</title>
       <h1 className="text-3xl font-bold mb-6">Blog</h1>
       {error && (
         <div className="mb-4 p-2 bg-red-100 text-red-700 rounded">{error}</div>

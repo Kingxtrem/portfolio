@@ -1,8 +1,12 @@
 
-
 export default function Home() {
   return (
     <main className="p-4 max-w-2xl mx-auto">
+      <meta charSet="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <meta name="Home" content="My personal portfolio and blog built with React and Vite." />
+      <meta name="theme-color" content="#2563eb" />
+      <title>My Portfolio Home</title>
       <h1 className="text-3xl sm:text-4xl font-bold mb-4 text-gray-900">
         Welcome to My Portfolio
       </h1>

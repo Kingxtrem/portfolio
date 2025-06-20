@@ -36,7 +36,11 @@ export default function BlogDetail() {
 
   return (
     <article className="p-4 max-w-2xl mx-auto">
-     
+      <meta charSet="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <meta name="Blog_Details" content="My personal portfolio and blog built with React and Vite." />
+      <meta name="theme-color" content="#2563eb" />
+      <title>BLog_Details</title>
       <h1 className="text-3xl font-bold mb-2">{post.title}</h1>
       <p className="text-gray-500 text-sm mb-4">
         By {post.author} • {new Date(post.createdAt).toLocaleDateString()}

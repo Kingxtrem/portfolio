@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /static/
+Allow: /static/js/
+Disallow: /admin/
+Disallow: /login/
+Sitemap: https://portfolioblog-xi.vercel.app/sitemap.xml
